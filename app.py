@@ -104,4 +104,4 @@ if st.button("Mulai Ringkas ✨"):
 
 # Footer
 st.divider()
-st.caption("Dibuat dengan Python & Streamlit")
+st.caption("Dibuat dengan Python2018 & Streamlit")
