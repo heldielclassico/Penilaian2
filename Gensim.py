@@ -16,7 +16,7 @@ if st.button("Latih Model"):
     
     if len(sentences) > 0:
         # Train Model
-        model = Word2Vec(sentences, vector_size=50, window=5, min_count=1, workers=4)
+        model = Word2Vec(sentences, vector_size=5, window=5, min_count=1, workers=4)
         st.session_state['model'] = model
         st.success("Model berhasil dilatih!")
     else:
