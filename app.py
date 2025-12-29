@@ -8,30 +8,27 @@ class FuzzyApp:
         self.root.title("FuzzyWuzzy String Matcher")
         self.root.geometry("400x500")
 
-        # Dataset Sederhana (Bisa diganti dengan data dari CSV/Database)
+        # Dataset
         self.data_pilihan = [
             "Apple iPhone 15", "Samsung Galaxy S23", "Google Pixel 8",
             "MacBook Pro M3", "Dell XPS 13", "Sony WH-1000XM5",
             "Asus ROG Zephyrus", "Logitech MX Master 3"
         ]
 
-        # --- UI Elements ---
-        tk.Label(root, text="Daftar Produk di Database:", font=('Arial', 10, 'bold')).pack(pady=5)
+        tk.Label(root, text="Daftar Produk:", font=('Arial', 10, 'bold')).pack(pady=5)
         
-        # Listbox untuk menampilkan data
         self.listbox = tk.Listbox(root, height=6)
         for item in self.data_pilihan:
             self.listbox.insert(tk.END, item)
         self.listbox.pack(pady=5, padx=20, fill=tk.X)
 
-        tk.Label(root, text="Masukkan Kata Pencarian (Coba typo):").pack(pady=5)
+        tk.Label(root, text="Masukkan Kata Pencarian:").pack(pady=5)
         self.entry_search = tk.Entry(root, font=('Arial', 12))
         self.entry_search.pack(pady=5, padx=20, fill=tk.X)
 
         self.btn_search = tk.Button(root, text="Cari Kecocokan", command=self.cari_fuzzy, bg="#4CAF50", fg="white")
         self.btn_search.pack(pady=10)
 
-        tk.Label(root, text="Hasil Terbaik:", font=('Arial', 10, 'bold')).pack(pady=5)
         self.label_hasil = tk.Label(root, text="-", font=('Arial', 12), fg="blue")
         self.label_hasil.pack(pady=5)
 
@@ -40,21 +37,19 @@ class FuzzyApp:
 
     def cari_fuzzy(self):
         query = self.entry_search.get()
-        
         if not query:
             messagebox.showwarning("Input Kosong", "Silakan masukkan kata kunci!")
             return
 
-        # Menggunakan process.extractOne untuk mencari kecocokan terbaik
-        # 
+        # Proses pencarian
         hasil_terbaik, skor = process.extractOne(query, self.data_pilihan, scorer=fuzz.token_sort_ratio)
 
-        # Update UI dengan hasil
-        if skor > 50: # Ambang batas kecocokan 50%
+        # Update UI (Perbaikan di sini)
+        if skor > 50:
             self.label_hasil.config(text=hasil_terbaik)
-            self.label_skor.config(text=f$$Skor Kemiripan: {skor}%$$)
+            self.label_skor.config(text=f"Skor Kemiripan: {skor}%")
         else:
-            self.label_hasil.config(text="Tidak ditemukan kecocokan yang kuat")
+            self.label_hasil.config(text="Tidak ditemukan kecocokan")
             self.label_skor.config(text=f"Skor tertinggi hanya: {skor}%")
 
 if __name__ == "__main__":
