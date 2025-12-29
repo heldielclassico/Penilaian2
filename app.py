@@ -1,6 +1,6 @@
 import assemblyai as aai
 
-aai.settings.api_key = "YOUR_API_KEY"
+aai.settings.api_key = "f998640f0b7043a6b0f3e949cef8ffac"
 transcriber = aai.Transcriber()
 
 # AssemblyAI bisa langsung menerima URL YouTube di beberapa versi SDK-nya
