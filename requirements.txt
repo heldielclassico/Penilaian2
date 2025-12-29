@@ -1,3 +1,11 @@
-streamlit
-assemblyai
-git+https://github.com/pytube/pytube.git
+# Library Utama UI
+gradio
+
+# Manipulasi Data & Gambar
+numpy
+Pillow
+requests
+
+# Deep Learning (untuk contoh ke-3)
+torch
+torchvision
